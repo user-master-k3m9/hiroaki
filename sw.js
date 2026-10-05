@@ -1,5 +1,5 @@
 // 保存済みの内容を優先して起動する（公開ページが無くなっても、iPhoneに保存された分で動き続ける）
-const VER = "derm-ichimon-lock-6ea16b3c";
+const VER = "derm-ichimon-lock-d71cab04";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "maskable-512.png", "apple-touch-icon.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(VER).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== VER).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
